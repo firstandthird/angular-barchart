@@ -6,7 +6,7 @@ In your app config, add the directive as a dependancy injection like so
 
 ```javascript
 app = angular.module('appName', [
-   'ffBarChart'
+   'ftBarChart'
 ]);
 ```
 
