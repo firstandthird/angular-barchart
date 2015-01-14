@@ -1,0 +1,20 @@
+{
+  "name": "angular-barchart",
+  "version": "0.0.1",
+  "description": "An angular directive for bar chart creation",
+  "main": "lib/angular.barchart.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firstandthird/angular-barchart.git"
+  },
+  "devDependencies": {
+    "ft-jscs": "^1.0.0",
+    "jscs": "^1.9.0"
+  },
+  "author": "Eric Willis (First and Third)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/firstandthird/angular-barchart/issues"
+  },
+  "homepage": "https://github.com/firstandthird/angular-barchart"
+}
