@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="example-app">
+  <head>
+    <meta charset="utf-8" />
+    <title>angular-notice example</title>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../lib/angular.barchart.js"></script>
+    <script src="app.js"></script>
+    <style>
+      .chart-container {width:400px;height:70px;padding:10px;border:1px solid #d9d9d9;background:#eaeaea;}
+        .chart-container svg {border-bottom: 2px solid rgba(0,0,0,0.8);}
+        .chart-container svg rect {fill:rgba(0,0,0,0.8);}
+    </style>
+  </head>
+  <body>
+  <div class="over-container">
+    <div ng-controller="MainCtrl">
+      <div class="chart-container">
+        <div bar-chart ng-model="mainVals" class="bar-chart" chart-height="70" chart-width="400" chart-color="rgba(99,99,99,0.3)"></div>
+      </div>
+      <div class="nput">
+        <input type="button" value="Change" ng-click="testit()"/> <span>Current Data: <strong>{{ mainVals.join(', ') }}</strong></span>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>
+</html>
