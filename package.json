@@ -1,20 +1,23 @@
 {
   "name": "angular-barchart",
-  "version": "0.0.1",
+  "version": "0.0.0",
+  "private": true,
   "description": "An angular directive for bar chart creation",
-  "main": "lib/angular.barchart.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/firstandthird/angular-barchart.git"
   },
-  "devDependencies": {
-    "ft-jscs": "^1.0.0",
-    "jscs": "^1.9.0"
+  "scripts": {
+    "jscs": "jscs -c node_modules/ft-jscs/jscs.json index.js"
   },
-  "author": "Eric Willis (First and Third)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/firstandthird/angular-barchart/issues"
   },
-  "homepage": "https://github.com/firstandthird/angular-barchart"
+  "homepage": "https://github.com/firstandthird/angular-barchart",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-set": "0.0.2",
+    "grunt-set-angular-lib": "^0.1.1"
+  }
 }
