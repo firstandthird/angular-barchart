@@ -7,9 +7,10 @@
     <script src="../lib/angular-barchart.js"></script>
     <script src="app.js"></script>
     <style>
-      .chart-container {width:400px;height:70px;padding:10px;border:1px solid #d9d9d9;background:#eaeaea;}
+        .chart-container {width:400px;height:70px;padding:10px;border:1px solid #d9d9d9;background:#eaeaea;}
         .chart-container svg {border-bottom: 2px solid rgba(0,0,0,0.8);}
         .chart-container svg rect {fill:rgba(0,0,0,0.8);}
+        .chart-data { margin: 10px 0 20px; }
     </style>
   </head>
   <body>
@@ -18,8 +19,17 @@
       <div class="chart-container">
         <div bar-chart ng-model="mainVals" class="bar-chart" chart-height="70" chart-width="400" chart-color="rgba(99,99,99,0.3)"></div>
       </div>
+      <div class="chart-data">
+        <span>Current Data: <strong>{{ mainVals | json }}</strong></span>
+      </div>
+      <div class="chart-container">
+        <div bar-chart ng-model="dictVals" barchart-value-key="value" class="bar-chart" chart-height="70" chart-width="400" chart-color="rgba(99,99,99,0.3)"></div>
+      </div>
+      <div class="chart-data">
+        <span>Current Data: <strong>{{ dictVals | json }}</strong></span>
+      </div>
       <div class="nput">
-        <input type="button" value="Change" ng-click="testit()"/> <span>Current Data: <strong>{{ mainVals.join(', ') }}</strong></span>
+        <input type="button" value="Change" ng-click="testit()"/>
       </div>
 
     </div>
