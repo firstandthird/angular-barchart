@@ -3,9 +3,20 @@ angular.module('ftBarChart', [])
   return {
     restrict: 'A',
     scope: {
-      ngModel: '='
+      ngModel: '=',
+      objectKey: '@?barchartValueKey'
     },
     link: function(scope, elem, attrs) {
+      var dictMode = false;
+
+      if (angular.isObject(scope.ngModel[0])) {
+        if (!angular.isDefined(attrs.barchartValueKey)) {
+          throw new Error('You must define a barchart-value-key to extract the value from the dict!');
+        }
+
+        dictMode = true;
+      }
+
       // Initialize functions in link scope
       var scale = function(max, min, num) {
         return (100 * (num - min) / (max - min)) || 0;
@@ -49,13 +60,25 @@ angular.module('ftBarChart', [])
         elem.append(svgElem);
       };
 
+      var getArray = function(newVal) {
+        var array = newVal;
+
+        if (dictMode) {
+          array = newVal.map(function(obj) {
+            return obj[scope.objectKey];
+          });
+        }
+
+        return array;
+      };
+
       var chartHeight = (attrs.chartHeight) ? attrs.chartHeight : 90;
       var chartWidth = (attrs.chartWidth) ? attrs.chartWidth : 400;
       var chartColor = (attrs.chartColor) ? attrs.chartColor : '#000';
 
       scope.$watch('ngModel', function(newVal) {
-        drawChart(newVal);
-      });
+        drawChart(getArray(newVal));
+      }, dictMode);
     }
   };
 });
