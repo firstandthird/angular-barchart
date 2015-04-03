@@ -4,10 +4,18 @@ angular.module('ftBarChart', [])
     restrict: 'A',
     scope: {
       ngModel: '=',
-      objectKey: '@?barchartValueKey'
+      objectKey: '@?barchartValueKey',
+      shouldAnimate: '&?barchartAnimate',
+      animateDuration: '&?barchartAnimateDuration'
     },
     link: function(scope, elem, attrs) {
       var dictMode = false;
+      var shouldAnimate = !!scope.shouldAnimate();
+      var animateDuration = '500ms';
+
+      if (shouldAnimate && angular.isDefined(attrs.barchartAnimateDuration)) {
+        animateDuration = scope.animateDuration();
+      }
 
       if (angular.isObject(scope.ngModel[0])) {
         if (!angular.isDefined(attrs.barchartValueKey)) {
@@ -19,7 +27,15 @@ angular.module('ftBarChart', [])
 
       // Initialize functions in link scope
       var scale = function(max, min, num) {
-        return (100 * (num - min) / (max - min)) || 0;
+        var result;
+
+        if (angular.isNumber(num)) {
+          result = (100 * (num - min) / (max - min)) || 0;
+        } else {
+          result = 0;
+        }
+
+        return result;
       };
 
       var drawChart = function(chartValues) {
@@ -54,6 +70,17 @@ angular.module('ftBarChart', [])
           rect.setAttribute('width', width + '%');
           rect.setAttribute('height', height + '%');
           rect.setAttribute('fill', chartColor);
+
+          if (shouldAnimate) {
+            var animate = $document[0].createElementNS('http://www.w3.org/2000/svg', 'rect');
+
+            animate.setAttribute('attributeName', 'y');
+            animate.setAttribute('from', '100%');
+            animate.setAttribute('to', y + '%');
+            animate.setAttribute('dur', animateDuration);
+            rect.appendChild(animate);
+          }
+
           svgElem.append(rect);
         }
 
