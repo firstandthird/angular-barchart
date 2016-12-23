@@ -16,8 +16,8 @@
   },
   "homepage": "https://github.com/firstandthird/angular-barchart",
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-set": "0.0.2",
+    "grunt": "^1.0.1",
+    "grunt-set": "0.0.4",
     "grunt-set-angular-lib": "^0.1.1"
   }
 }
